@@ -23,5 +23,5 @@ urlpatterns = [
     path('api/tracks/meta/<str:id>', views.get_track_meta_by_id),
     path('api/tracks/data/<str:id>', views.get_track_data_by_id),
     path('api/tracks/random/<int:k>', views.get_random_tracks),
-    path('api/tracks/thumbnail/<str:id>', views.get_thumbnail_by_id),
+    path('api/tracks/thumbnail/<str:id>/<str:mode>', views.get_thumbnail_by_id),
 ]

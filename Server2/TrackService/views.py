@@ -113,12 +113,15 @@ def get_track_data_by_id(request, id):
 
 
 @api_view(['GET'])
-def get_thumbnail_by_id(request, id):
+def get_thumbnail_by_id(request, id, mode="small"):
     if request.method == 'GET':
         id = id.replace('-', '')
         id = f'{id[0:8]}-{id[8:12]}-{id[12:16]}-{id[16:20]}-{id[20:]}'
         directory = f'{RESOURCES}/tracks/{id}'.replace('\\', '/')
-        thumbnail = f'{directory}/thumbnails/thumbnail336x188.jpg'
+        if mode == "small": thumbnail = "thumbnail336x188.jpg"
+        elif mode == "big": thumbnail = "thumbnail1920x1080.webp"
+        else: thumbnail = "thumbnail336x188.jpg"
+        thumbnail = f'{directory}/thumbnails/{thumbnail}'
         return FileResponse(open(thumbnail, 'rb'))
     return JsonResponse({'status': False})
 
